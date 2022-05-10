@@ -1,0 +1,62 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card mt-5">
+            <div class="card-body">
+                <div class="card-title py-3">
+                    <h4>Register for a free account</h4>
+                </div>
+
+                <form action="{% url 'register' %}" method="post">
+
+                    {% csrf_token %}
+
+                    {% include 'partials/_messages.html' %}
+                    <div class="form-group py-1">
+                        <input type="text" 
+                        name="username" 
+                        placeholder="username"
+                        id="usernameField" 
+                        class="form-control form-control-sm" 
+                        value="{{fieldValues.username}}"
+                        />
+                    </div>
+                    <div class="invalid-feedback" style="display:none">
+                    </div>
+                    <p class="text-sm text-success usernameSuccessOutput"></p>
+                    <div class="form-group py-1">
+                        <input type="email" 
+                        name="email" 
+                        placeholder="Email"
+                        id="emailField" 
+                        class="form-control form-control-sm" 
+                        value="{{fieldValues.email}}"
+                        />
+                    </div>
+                    <div class="emailFeedBackArea" style="display:none">
+
+                    </div>
+                    <!-- <p class="text-sm text-success usernameSuccessOutput"></p> -->
+                    <div class="form-group py-1">
+                        <input type="password" 
+                        name="password" 
+                        placeholder="password"
+                        id="passwordField" 
+                        class="form-control form-control-sm" />
+
+                        <button type="button"><small class="float-right py-3 showPasswordToggle">SHOW</small></button>
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-block btn-primary" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
+
+{% endblock %}
