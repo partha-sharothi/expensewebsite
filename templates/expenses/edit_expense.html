@@ -2,32 +2,40 @@
 
 {% block content %}   
 <div class="container mt-4">
+<div class="row">
+<div class="col-md-10">
 <div class="bg-secondary p-2 text-dark bg-opacity-25">
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
+      <li class="breadcrumb-item active" aria-current="page">Edit Expenses</li>
     </ol>
 </nav>
+</div>
+</div>
+<div class="col-md-2">
+    <a href="{% url 'expense-delete' expense.id %}" class="btn btn-danger btn-sm">Delete</a>
+</div>
 </div>
 </div>
 
     <div class="card mt-4">
         <div class="card-body">
-            <form action="{% url 'add-expenses' %}" method="post">
+            <form action="{% url 'expense-edit' expense.id %}" method="post">
                 {% include 'partials/_messages.html' %}
                 {% csrf_token %}
             <div class="mb-3">
                 <label for="">Amount</label>
-                <input type="number" class="form-control" name="amount" value="{{ value.amount }}">
+                <input type="number" class="form-control" name="amount" value="{{ values.amount }}">
             </div>
             <div class="mb-3">
                 <label for="">Description</label>
-                <input type="text" class="form-control" name="description" value="{{ value.description }}">
+                <input type="text" class="form-control" name="description" value="{{ values.description }}">
             </div>
             <div class="mb-3">
                 <label for="">Cetegory</label>
                 <select class="form-select" name="category">
+                    <option selected name="category" value="{{ values.category }}">{{ values.category }}</option>
                     {% for category in categories %}
                         <option name="category" value="{{ category.name }}">{{ category.name }}</option>
                     {% endfor %}
@@ -35,12 +43,11 @@
             </div>
             <div class="mb-3">
                 <label for="">Date of Expense</label>
-                <input type="date" class="form-control" name="expense_date">
+                <input type="date" class="form-control" name="expense_date" value="{{ values.date |date:'Y-m-d' }}">
             </div>
-            <input type="submit" value="Submit" class="btn btn-primary" />
+            <input type="submit" value="Save" class="btn btn-primary" />
         </form>
         </div>
     </div>
-
 
 {% endblock %} 

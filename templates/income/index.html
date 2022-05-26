@@ -1,3 +1,5 @@
+
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -8,7 +10,7 @@
     <div class="bg-secondary p-2 text-dark bg-opacity-25">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Income</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
           <li class="breadcrumb-item active" aria-current="page">My Income</li>
         </ol>
     </nav>
@@ -16,14 +18,14 @@
     </div>
     
     <div class="col-md-2">
-        <a href="{% url 'add-expenses' %}" class="btn btn-primary">Add Income</a>
+        <a href="{% url 'add-income' %}" class="btn btn-primary">Add Income</a>
     </div>
     </div>
 </div>
 
 <div class="container">
     {% include 'partials/_messages.html' %}
-    {% if expenses.count %}
+    {% if income.count %}
     <div class="row">
         <div class="col-md-8"></div>
         <div class="col-md-4">
@@ -38,21 +40,21 @@
             <thead>
                 <tr>
                     <th>Amount ({{currency}})</th>
-                    <th>Category</th>
+                    <th>Source</th>
                     <th>Description</th>
                     <th>Date</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {% for expense in page_obj %}
+                {% for income in page_obj %}
                 <tr>
-                    <td>{{expense.amount}}</td>
-                    <td>{{expense.category}}</td>
-                    <td>{{expense.description}}</td>
-                    <td>{{expense.date}}</td>
+                    <td>{{income.amount}}</td>
+                    <td>{{income.source}}</td>
+                    <td>{{income.description}}</td>
+                    <td>{{income.date}}</td>
                     <td>
-                        <a href="{% url 'expense-edit' expense.id %}"
+                        <a href="{% url 'income-edit' income.id %}"
                         class="btn btn-secondary btn-sm">
                         Edit
                         </a>
@@ -70,7 +72,7 @@
             <thead>
                 <tr>
                     <th>Amount ({{currency}})</th>
-                    <th>Category</th>
+                    <th>Source</th>
                     <th>Description</th>
                     <th>Date</th>
                     <th></th>
@@ -108,8 +110,6 @@
 
 
 
-<script src="{% static 'js/searchExpenses.js' %}"></script>
+<script src="{% static 'js/searchIncome.js' %}"></script>
 
 {% endblock %}
-
-

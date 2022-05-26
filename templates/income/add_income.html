@@ -5,8 +5,8 @@
 <div class="bg-secondary p-2 text-dark bg-opacity-25">
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
+      <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Add Income</li>
     </ol>
 </nav>
 </div>
@@ -14,7 +14,7 @@
 
     <div class="card mt-4">
         <div class="card-body">
-            <form action="{% url 'add-expenses' %}" method="post">
+            <form action="{% url 'add-income' %}" method="post">
                 {% include 'partials/_messages.html' %}
                 {% csrf_token %}
             <div class="mb-3">
@@ -26,16 +26,16 @@
                 <input type="text" class="form-control" name="description" value="{{ value.description }}">
             </div>
             <div class="mb-3">
-                <label for="">Cetegory</label>
-                <select class="form-select" name="category">
-                    {% for category in categories %}
-                        <option name="category" value="{{ category.name }}">{{ category.name }}</option>
+                <label for="">Sources</label>
+                <select class="form-select" name="source">
+                    {% for source in sources %}
+                        <option name="source" value="{{ source.name }}">{{ source.name }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="mb-3">
-                <label for="">Date of Expense</label>
-                <input type="date" class="form-control" name="expense_date">
+                <label for="">Date of Income</label>
+                <input type="date" class="form-control" name="income_date">
             </div>
             <input type="submit" value="Submit" class="btn btn-primary" />
         </form>
